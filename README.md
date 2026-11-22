@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/the-picture-that-tastes-of-one-20261122-2047/freysiatiara/tastes-one-20261122/rank.svg)](https://make.fun/bounty/the-picture-that-tastes-of-one-20261122-2047/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=the-picture-that-tastes-of-one-20261122-2047)
 [![reward](https://make.fun/badge/the-picture-that-tastes-of-one-20261122-2047/freysiatiara/tastes-one-20261122/reward.svg)](https://make.fun/bounty/the-picture-that-tastes-of-one-20261122-2047?utm_source=github&utm_medium=readme&utm_campaign=the-picture-that-tastes-of-one-20261122-2047)
 
-One strawberry, nothing else. An extreme macro photograph of a single ripe strawberry taken close enough to fill the frame: deep red skin stretched glossy and taut, pale seeds sunk in their pits, a scatter of fine hairs and fresh water droplets, every ridge catching a hard highlight against a soft dark background. It is built to be tasted with the eyes — one ingredient, at the distance where its texture does the talking.
+Honey, and only honey. An extreme macro photograph of a single piece of golden honeycomb held close enough to fill the frame: perfect hexagonal wax cells brimming with glossy amber honey, tiny bubbles suspended in the glow, warm side light raking across the rims, and one slow droplet gathering at the lower edge, ready to fall. Nothing else is in the picture — one ingredient, at the distance where you can almost taste it.
 
 The picture ships in this repository as `entry.png` (1024×683 PNG). Running the program copies it, byte for byte, to the contest output folder (`/output/entry.png`, or `$MAKEFUN_OUTPUT_DIR` when that is set). Pure Python standard library, no network, no arguments.
 

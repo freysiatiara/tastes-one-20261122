@@ -1,47 +1,47 @@
 #!/usr/bin/env python3
-"""Publish the strawberry picture to the contest output location.
+"""Carry the honeycomb picture to the contest output folder.
 
-The artwork lives next to this file as ``entry.png``. Running the
-program streams that file, unchanged, to ``entry.png`` inside the
-output directory: ``$MAKEFUN_OUTPUT_DIR`` when the harness sets it,
-otherwise ``/output``. Standard library only, no network access,
-no command-line arguments, and the working directory is irrelevant
-because every path is derived from this file's own location.
+``entry.png`` sits in the same directory as this script. A run reads
+that file and writes an identical copy to ``entry.png`` inside the
+output directory, which is ``$MAKEFUN_OUTPUT_DIR`` when the harness
+provides one and ``/output`` otherwise. Nothing here depends on the
+current working directory: the source path is resolved from this
+file's own location. Standard library only, no network, no arguments.
 """
 
+from pathlib import Path
 import os
-import shutil
 import sys
 
-CHUNK_SIZE = 128 * 1024
-ARTWORK_NAME = "entry.png"
+PICTURE = "entry.png"
+BLOCK = 64 * 1024
 
 
-def artwork_source() -> str:
-    """Absolute path of the picture bundled beside this program."""
-    here = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(here, ARTWORK_NAME)
+def picture_path() -> Path:
+    return Path(__file__).resolve().parent / PICTURE
 
 
-def output_target() -> str:
-    """Absolute path the harness expects the picture to appear at."""
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
-    return os.path.join(out_dir, ARTWORK_NAME)
+def destination_path() -> Path:
+    folder = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
+    return Path(folder) / PICTURE
 
 
-def publish() -> str:
-    src = artwork_source()
-    dst = output_target()
-    os.makedirs(os.path.dirname(dst), exist_ok=True)
-    with open(src, "rb") as fin, open(dst, "wb") as fout:
-        shutil.copyfileobj(fin, fout, length=CHUNK_SIZE)
+def carry() -> Path:
+    src = picture_path()
+    dst = destination_path()
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with src.open("rb") as fin, dst.open("wb") as fout:
+        while True:
+            block = fin.read(BLOCK)
+            if not block:
+                break
+            fout.write(block)
     return dst
 
 
 def main() -> int:
-    written = publish()
-    size = os.path.getsize(written)
-    print(f"wrote {written} ({size} bytes)")
+    target = carry()
+    print(f"delivered {target} ({target.stat().st_size} bytes)")
     return 0
 
 
